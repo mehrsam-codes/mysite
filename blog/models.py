@@ -13,6 +13,11 @@ class Post(models.Model): #table name
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True )
     updated_date = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering =  ['created_date']
+    def __str__(self):
+        return "title :{} | id : {} ".format(self.title , self.id)
+    
 # class User(models.Model):
 #     username = models.CharField()
 #     firstname = models.CharField()
