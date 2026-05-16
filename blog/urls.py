@@ -5,6 +5,7 @@ app_name = 'blog'
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('' , blog_view , name='index') ,
-    path('blog/single' , blog_single , name='single') ,
+    path('<int:pid>' , blog_single , name='single') ,
+    # path('post-<int:pid>' , test )
 
 ]

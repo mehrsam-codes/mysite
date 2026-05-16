@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-empty-'
     # fields = ('title' ,) 
     # exclude = 'title'
-    list_display = ('title' , 'counted_view' , 'status' , 'published_date' , 'created_date' , )
+    list_display = ('title' ,'author' ,  'counted_view' , 'status' , 'published_date' , 'created_date' ,'author' )
     list_filter = ('status' , )
     ordering = ['-created_date']
     search_fields = ['title' , 'content']
