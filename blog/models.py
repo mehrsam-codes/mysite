@@ -1,12 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+
+class Category(models.Model):
+    name = models.CharField(max_length=225)
+    def __str__(self):
+        return self.name 
 class Post(models.Model): #table name 
+    image = models.ImageField(upload_to= 'blog/' , default='blog/defualt.jpg')
     author = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
     title   = models.CharField (max_length=255)
     content =  models.TextField()#column
-    # image = models.CharField()
-    # category = models.IntegerField()
+
+    category = models.ManyToManyField(Category)
     # tag = models.IntegerField()
 
     counted_view = models.IntegerField(default=0)#default=0
@@ -18,6 +24,8 @@ class Post(models.Model): #table name
         ordering =  ['created_date']
     def __str__(self):
         return "title :{} | id : {} ".format(self.title , self.id)
+    def snippet(self):
+        return self.content[:100] + '...'
     
 # class User(models.Model):
 #     username = models.CharField()
@@ -28,8 +36,6 @@ class Post(models.Model): #table name
 #     superuser = models.BooleanField()
 #     staff = models.BooleanField()
 
-# class Category(models.Model):
-#     name = models.CharField()
 # class Tag(models.Model):
 #     name = models.CharField()
 
