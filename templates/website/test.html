@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>form test</title>
 </head>
 <body>
-    <h1>test</h1>
+    <form action="{% url 'website:test' %}" method="post">
+        {% csrf_token %}
+        <label for="">name:</label>
+        <input name="name" type="text"><br>
+        <label for="">email:</label>
+        <input name="email" type="email"><br>
+        <label for="">subject:</label>
+        <input name="subject" type="text"><br>
+        <label for="">massage:</label>
+        <input name="massage" type="text"><br>
+        <button type="submit" style=" background-color: rgb(255, 0, 0);">submit</button><br>
+    </form>
 </body>
 </html>
