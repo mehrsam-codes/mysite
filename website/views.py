@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from website.models import Contact 
-
+from website.forms import NameForm , ContactForm
 def  index_view(request):
     return render(request , 'website/index.html')
 
@@ -13,22 +13,14 @@ def contact_view(request):
 
 def test_view(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        massage = request.POST.get('massage')
-        c = Contact()
-        c.name = name
-        c.email = email
-        c.subject = subject
-        c.massage = massage 
-        c.save()
-        print(name , email , subject , massage)
-
-  
-
-
-    return render(request,'website/test.html')
+        form   = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('done')
+        else:
+            return HttpResponse("not valid")
+    form = ContactForm()
+    return render(request,'website/test.html' , {'form':form})
 
 # Create your views here.
   
