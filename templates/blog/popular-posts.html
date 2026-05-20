@@ -1,3 +1,4 @@
+  {% load humanize %}
   <div class="single-sidebar-widget popular-post-widget">
               <h4 class="popular-title">Popular Posts</h4>
               <div class="popular-post-list">
@@ -11,9 +12,8 @@
                   </div>
                   <div class="details">
                     <a href="blog-single.html">
-                      <h6>{{post.title}}</h6>
-                    </a>
-                    <p>02 Hours ago</p>
+                      <p>{{post.published_date|date:"d M Y"}}</p>
+                      <p>{{post.published_date|ordinal}}</p>
                   </div>
                 </div>
                 {% endfor %}
