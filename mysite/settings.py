@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin' , 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'robots' ,
     'debug_toolbar' , 
     'taggit' , 
+    'django_summernote' , 
+    'captcha' , 
     'website.apps.WebsiteConfig' ,
     'blog'
 ]
@@ -52,6 +55,10 @@ SITE_ID = 2
 #robots
 ROBOTS_USE_HOST  = False
 ROBOTS_USE_SITEMAP  = False
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha' ,
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -147,3 +154,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [ 
     '127.0.0.1',
 ]
+X_FRAME_OPTIONS = 'SAMEORIGIN'
