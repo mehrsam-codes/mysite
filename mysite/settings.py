@@ -39,10 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize', 
     'django_extensions' ,
+    'django.contrib.sites' , 
+    'django.contrib.sitemaps' , 
+    'robots' ,
+    'debug_toolbar' , 
+    'taggit' , 
     'website.apps.WebsiteConfig' ,
     'blog'
 ]
-
+#site framework
+SITE_ID = 2
+#robots
+ROBOTS_USE_HOST  = False
+ROBOTS_USE_SITEMAP  = False
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware' , 
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -131,4 +142,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
         # مسیر پوشه static در ریشه پروژه که فایل ها در آن قرار دارند
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+]
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+INTERNAL_IPS = [ 
+    '127.0.0.1',
 ]
