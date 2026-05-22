@@ -1,8 +1,12 @@
-from django.shortcuts import render , get_object_or_404
+from django.shortcuts import render , get_object_or_404 , redirect
 from django.http import HttpResponse , JsonResponse
 from blog.models import Post
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 from blog.models import Comment
+from blog.forms import CommentForm
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 def blog_view(request ,**kwargs):
     posts = Post.objects.filter(status=1)
@@ -24,11 +28,30 @@ def blog_view(request ,**kwargs):
     context = {'posts': posts}
     return render(request , 'blog/blog-home.html' , context)
 
-def blog_single(request , pid):
-    post = get_object_or_404(Post , pk=pid , status=1)
-    comments = Comment.objects.filter(post=post.id).order_by('-created_date') 
-    context = {'post': post , 'commetns':comments}
-    return render(request , 'blog/blog-single.html' , context)
+@csrf_exempt
+def blog_single(request, pid):
+    post = get_object_or_404(Post, pk=pid, status=1)
+    comments = Comment.objects.filter(post=post).order_by('-created_date')
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            messages.success(request, 'your comment submitted successfully')
+            return redirect('blog:single', pid=pid)
+        else:
+            messages.error(request, 'your comment didn’t submit successfully')
+    else:
+        form = CommentForm()
+
+    return render(request, 'blog/blog-single.html', {
+        'post': post,
+        'comments': comments,
+        'form': form
+    })
+
 def test(request , pid):
     # post = Post.objects.get(id=pid)
     post = get_object_or_404(Post , pk=pid)
