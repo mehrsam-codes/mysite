@@ -2,6 +2,7 @@ from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse , JsonResponse
 from blog.models import Post
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
+from blog.models import Comment
 # Create your views here.
 def blog_view(request ,**kwargs):
     posts = Post.objects.filter(status=1)
@@ -25,7 +26,8 @@ def blog_view(request ,**kwargs):
 
 def blog_single(request , pid):
     post = get_object_or_404(Post , pk=pid , status=1)
-    context = {'post': post}
+    comments = Comment.objects.filter(post=post.id).order_by('-created_date') 
+    context = {'post': post , 'commetns':comments}
     return render(request , 'blog/blog-single.html' , context)
 def test(request , pid):
     # post = Post.objects.get(id=pid)

@@ -1,5 +1,5 @@
 from django import template
-from blog.models import Post , Category
+from blog.models import Post , Category  ,Comment
 register = template.Library()
 @register.simple_tag(name='posts')
 def posts():
@@ -8,7 +8,11 @@ def posts():
 @register.simple_tag(name='totalposts')
 def totalposts():
     return Post.objects.filter(status=1).count()
-
+@register.simple_tag(name='comments_count')
+def funcation(pid):
+    post = Post.objects.get(pk=pid)
+    return  Comment.objects.filter(post=post.id).order_by('-created_date').count()
+    context = {'post': post , 'commetns':comments}
 @register.filter
 def snippet(text  , arg=20):
     return text[:arg] + '...'
