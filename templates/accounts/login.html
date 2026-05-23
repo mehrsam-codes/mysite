@@ -1,0 +1,217 @@
+<html>
+<head>
+    <title>Login</title>
+</head>
+<style>
+    body {
+
+        background-color: #071a42c2;
+
+    }
+
+
+
+    .login {
+
+        width: 350px;
+
+        height: 360px;
+
+        background-color: rgb(12, 12, 12);
+
+        margin: 10% auto;
+
+    }
+
+
+
+
+
+    .username {
+
+        width: 285px;
+
+        padding: 10px;
+
+        border-radius: 25px;
+
+        margin-left: 35px;
+
+        margin-top: 100px;
+
+        border: 3px solid green;
+
+        background-color: rgb(12, 12, 12);
+
+        text-align: center;
+
+        color: white;
+
+
+
+
+    }
+
+
+
+    .username:hover {
+
+        box-shadow: 0px 0px 20px green;
+
+    }
+
+
+
+    .password:hover {
+
+        box-shadow: 0px 0px 15px #2213ffd1;
+
+
+
+
+    }
+
+
+
+    .but1:hover {
+
+        box-shadow: 0px 0px 10px green;
+
+        background-color: green;
+
+
+
+    }
+
+
+
+    .password {
+
+        border-radius: 5px;
+
+        padding: 10px;
+
+        border-radius: 25px;
+
+        width: 200px;
+
+        margin-left: 77px;
+
+        margin-top: 22px;
+
+        border: 2px solid #2213ffd1;
+
+        background-color: rgb(12, 12, 12);
+
+        text-align: center;
+
+        color: white;
+
+
+
+
+
+
+
+
+
+    }
+
+    .but1 {
+
+        display: block;
+
+        margin: 10 auto;
+
+        margin-top: 20px;
+
+        background-color: rgb(12, 12, 12);
+
+        border-radius: 25px;
+
+        padding: 10px;
+
+        text-align: center;
+
+        color: white;
+
+        width: 110px;
+
+        border: 3px solid green;
+
+
+
+    }
+
+
+
+    .textlogin {
+
+        color: white;
+
+        margin-left: 128px;
+
+        display: inline;
+
+    }
+</style>
+
+
+
+
+
+<body>
+
+
+
+
+    <form method="post" action="{% url 'accounts:login' %}" >
+        {% csrf_token %}
+        <div class="loginpage">
+
+
+
+
+
+        <div class="login">
+
+            <h1 class="textlogin">LOGIN</h1>
+
+
+
+
+
+            <input class="username" name="username" type="text" placeholder="Username">
+
+
+
+            <input class="password" name="password"  type="password" placeholder="password">
+
+
+
+            <input class="but1" type="submit" value="Login">
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+    </form>
+    
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>
