@@ -16,16 +16,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1qgc=bmljhx91a@4618gx)!25x+d9+64067=rcqkzg7of%n70p'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -51,8 +41,7 @@ INSTALLED_APPS = [
     'blog' , 
     'accounts'
 ]
-#site framework
-SITE_ID = 2
+
 #robots
 ROBOTS_USE_HOST  = False
 ROBOTS_USE_SITEMAP  = False
@@ -94,12 +83,6 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -142,17 +125,14 @@ USE_TZ = True
         # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # این مسیر برای collectstatic و production است
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
         # مسیر پوشه static در ریشه پروژه که فایل ها در آن قرار دارند
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [ 
     '127.0.0.1',
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
